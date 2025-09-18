@@ -41,7 +41,7 @@ export const siteConfig: SiteConfig = {
 		ignoreTags: ["script", "style", "code", "pre"], // 翻译时忽略的 HTML 标签
 	},
 	banner: {
-		enable: false, // 是否启动Banner壁纸模式
+		enable: true, // 是否启动Banner壁纸模式
 
 		// 支持单张图片或图片数组，当数组长度 > 1 时自动启用轮播
 		src: {
@@ -118,7 +118,7 @@ export const siteConfig: SiteConfig = {
 		enable: true, // 启用目录功能
 		depth: 3, // 目录深度，1-6，1 表示只显示 h1 标题，2 表示显示 h1 和 h2 标题，依此类推
 	},
-	generateOgImages: false, // 启用生成OpenGraph图片功能,注意开启后要渲染很长时间，不建议本地调试的时候开启
+	generateOgImages: true, // 启用生成OpenGraph图片功能,注意开启后要渲染很长时间，不建议本地调试的时候开启
 	favicon: [
 		// 留空以使用默认 favicon
 		// {
@@ -200,7 +200,7 @@ export const navBarConfig: NavBarConfig = {
 			],
 		},
 		{
-			name: "我的",
+			name: "My",
 			url: "/content/",
 			icon: "material-symbols:person",
 			children: [
@@ -214,13 +214,13 @@ export const navBarConfig: NavBarConfig = {
 			],
 		},
 		{
-			name: "关于",
+			name: "About",
 			url: "/content/",
 			icon: "material-symbols:info",
 			children: [LinkPreset.About, LinkPreset.Friends],
 		},
 		{
-			name: "Others",
+			name: "Other",
 			url: "#",
 			icon: "material-symbols:more-horiz",
 			children: [
@@ -299,15 +299,15 @@ export const commentConfig: CommentConfig = {
 };
 
 export const announcementConfig: AnnouncementConfig = {
-	title: "Announcement", // 公告标题
-	content: "Welcome to my blog! This is a sample announcement.", // 公告内容
+	title: "公告", // 公告标题
+	content: "欢迎.", // 公告内容
 	closable: true, // 允许用户关闭公告
-	link: {
-		enable: true, // 启用链接
-		text: "Learn More", // 链接文本
-		url: "/about/", // 链接 URL
-		external: false, // 内部链接
-	},
+	// link: {
+	// 	enable: true, // 启用链接
+	// 	text: "Learn More", // 链接文本
+	// 	url: "/about/", // 链接 URL
+	// 	external: false, // 内部链接
+	// },
 };
 
 export const musicPlayerConfig: MusicPlayerConfig = {
@@ -436,7 +436,7 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 };
 
 export const sakuraConfig: SakuraConfig = {
-	enable: false, // 默认关闭樱花特效
+	enable: true, // 默认关闭樱花特效
 	sakuraNum: 21, // 樱花数量
 	limitTimes: -1, // 樱花越界限制次数，-1为无限循环
 	size: {
@@ -477,7 +477,7 @@ export const pioConfig: import("./types/config").PioConfig = {
 		home: "点击这里返回首页", // 首页提示
 		skin: ["想要换新的衣服吗?", "新衣服真好看~"], // 换装提示
 		close: "QWQ 真的要关掉我吗？~", // 关闭提示
-		link: "https://github.com/matsuzaka-yuki/Mizuki", // 关于链接
+		//link: "https://github.com/matsuzaka-yuki/Mizuki", // 关于链接
 	},
 };
 
