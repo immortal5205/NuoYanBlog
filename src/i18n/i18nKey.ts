@@ -1,11 +1,11 @@
 enum I18nKey {
-	home = "主页",
-	about = "关于",
-	archive = "历史",
-	search = "搜索",
-	other = "其他",
+	home = "home",
+	about = "about",
+	archive = "archive",
+	search = "search",
+	other = "other",
 
-	tags = "标签",
+	tags = "tags",
 	categories = "categories",
 	recentPosts = "recentPosts",
 	postList = "postList",
