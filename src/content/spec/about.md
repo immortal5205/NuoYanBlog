@@ -1,8 +1,8 @@
-# About This Site
+# 关于自己
+**终有一天我会做出属于自己的游戏**
+<!-- This website is built with the **Astro** framework using the [Mizuki](https://github.com/matsuzaka-yuki/mizuki) theme. -->
 
-This website is built with the **Astro** framework using the [Mizuki](https://github.com/matsuzaka-yuki/mizuki) theme.
-
-::github{repo="matsuzaka-yuki/Mizuki"}
+<!-- ::github{repo="matsuzaka-yuki/Mizuki"}
 
 ## 🌟 Theme Features
 
@@ -51,4 +51,4 @@ This website is built with the **Astro** framework using the [Mizuki](https://gi
 
 ---
 
-*Built with ❤️ using Astro and inspired by modern web design principles.*
+*Built with ❤️ using Astro and inspired by modern web design principles.* -->
