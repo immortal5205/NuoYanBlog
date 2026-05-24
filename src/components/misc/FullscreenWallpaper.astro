@@ -17,38 +17,54 @@ if (!config.enable) {
 
 // 获取当前设备类型的图片源
 const getImageSources = async () => {
-	let srcConfig = config.src;
+		let srcConfig = config.src;
 
-	// 如果banner关闭且启用了图片API，使用API图片
-	if (
-		!siteConfig.banner.enable &&
-		siteConfig.banner.imageApi?.enable &&
-		siteConfig.banner.imageApi?.url
-	) {
-		try {
-			const response = await fetch(siteConfig.banner.imageApi.url);
-			const text = await response.text();
-			const apiImages = text.split("\n").filter((line) => line.trim());
-
-			if (apiImages.length > 0) {
-				// 将API图片同时用于桌面端和移动端
-				return {
-					desktop: apiImages,
-					mobile: apiImages,
-				};
+		// 如果启用了图片API，始终使用API图片作为壁纸背景
+		if (
+			siteConfig.banner.imageApi?.enable &&
+			siteConfig.banner.imageApi?.url
+		) {
+			try {
+				const urls = [];
+				for (let i = 0; i < 8; i++) {
+					try {
+						if (i > 0) await new Promise((r) => setTimeout(r, 100));
+						const response = await fetch(siteConfig.banner.imageApi.url);
+						if (response.headers.get("content-type")?.includes("json")) {
+							const json = await response.json();
+							let rawUrl = "";
+							if (json.imgurl) rawUrl = json.imgurl;
+							else if (json.url) rawUrl = json.url;
+							else if (json.img_url) rawUrl = json.img_url;
+							else if (json.data?.url) rawUrl = json.data.url;
+							else if (json.items && json.items.length > 0) {
+								json.items.forEach((item) => { if (item.url) urls.push(item.url); });
+							}
+							if (rawUrl) {
+								if (rawUrl.includes("image.baidu.com/search/down")) {
+									const m = rawUrl.match(/[?&]url=([^&]+)/);
+									if (m) rawUrl = decodeURIComponent(m[1]);
+								}
+								urls.push(rawUrl);
+							}
+						}
+					} catch (e) {}
+				}
+				if (urls.length > 0) {
+					const unique = [...new Set(urls)].filter(Boolean);
+					return { desktop: unique, mobile: unique };
+				}
+			} catch (error) {
+				console.warn("Failed to fetch API images for wallpaper:", error);
 			}
-		} catch (error) {
-			console.warn("Failed to fetch images from API for wallpaper:", error);
 		}
-	}
 
-	const { desktop, mobile } = srcConfig;
-	return {
-		desktop: Array.isArray(desktop) ? desktop : desktop ? [desktop] : [],
-		mobile: Array.isArray(mobile) ? mobile : mobile ? [mobile] : [],
+		const { desktop, mobile } = srcConfig;
+		return {
+			desktop: Array.isArray(desktop) ? desktop : desktop ? [desktop] : [],
+			mobile: Array.isArray(mobile) ? mobile : mobile ? [mobile] : [],
+		};
 	};
-};
-
 const imageSources = await getImageSources();
 const hasDesktopImages = imageSources.desktop.length > 0;
 const hasMobileImages = imageSources.mobile.length > 0;
@@ -85,28 +101,29 @@ const getPositionClass = (pos: string) => {
 const positionClass = getPositionClass(position);
 ---
 
-<div 
+<div
 	class:list={[
 		"fixed inset-0 w-full h-full overflow-hidden pointer-events-none",
 		className
 	]}
-	style={`z-index: ${zIndex}; opacity: ${opacity};`}
+	style={`z-index: ${zIndex}; opacity: ${opacity}; background: var(--page-bg);`}
 	data-fullscreen-wallpaper
 >
+	<!-- 渐变遮罩层 -->
+	<!-- 径向渐变暗角，聚焦画面中心 -->
+	<div class="absolute inset-0 z-[1] pointer-events-none" style="background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.5) 100%);"></div>
 	<!-- 桌面端壁纸 -->
 	{hasDesktopImages && (
 		<div class="hidden lg:block w-full h-full relative">
 			{imageSources.desktop.map((src, index) => {
 				const isLocal = !src.startsWith("http");
-				const imageClass = `absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${positionClass}`;
-				
+				const positionClass = getPositionClass(position);
 				if (isLocal) {
-					// 对于本地图片，使用img标签而不是Image组件
 					return (
 						<img
 							src={src}
 							alt={`Desktop wallpaper ${index + 1}`}
-							class={imageClass}
+							class={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${positionClass}`}
 							data-carousel-item={isCarouselEnabled ? index : undefined}
 							style={blur > 0 ? `filter: blur(${blur}px);` : undefined}
 						/>
@@ -116,13 +133,13 @@ const positionClass = getPositionClass(position);
 						<img
 							src={src}
 							alt={`Desktop wallpaper ${index + 1}`}
-							class={imageClass}
+							class={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${positionClass}`}
 							data-carousel-item={isCarouselEnabled ? index : undefined}
 							style={blur > 0 ? `filter: blur(${blur}px);` : undefined}
 						/>
 					);
-				}
-			})}
+				}}
+				)}
 		</div>
 	)}
 
@@ -130,32 +147,35 @@ const positionClass = getPositionClass(position);
 	{hasMobileImages && (
 		<div class="block lg:hidden w-full h-full relative">
 			{imageSources.mobile.map((src, index) => {
-				const isLocal = !src.startsWith("http");
-				const imageClass = `absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${positionClass}`;
-				
-				if (isLocal) {
-					// 对于本地图片，使用img标签而不是Image组件
-					return (
+			const isLocal = !src.startsWith("http");
+			const positionClass = getPositionClass(position);
+			if (isLocal) {
+				return (
+					<img
+						src={src}
+						alt={`Mobile wallpaper ${index + 1}`}
+						class={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${positionClass}`}
+						data-carousel-item={isCarouselEnabled ? index : undefined}
+						style={blur > 0 ? `filter: blur(${blur}px);` : undefined}
+					/>
+				);
+			} else {
+				return (
+					<div
+						class="absolute inset-0 w-full h-full transition-opacity duration-1000 overflow-hidden"
+						style={`background-image: url('${src}'); background-size: cover; background-position: center; filter: blur(25px); transform: scale(1.1);`}
+						data-carousel-item={isCarouselEnabled ? index : undefined}
+					>
 						<img
 							src={src}
 							alt={`Mobile wallpaper ${index + 1}`}
-							class={imageClass}
-							data-carousel-item={isCarouselEnabled ? index : undefined}
+							class={`absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 ${positionClass}`}
 							style={blur > 0 ? `filter: blur(${blur}px);` : undefined}
 						/>
-					);
-				} else {
-					return (
-						<img
-							src={src}
-							alt={`Mobile wallpaper ${index + 1}`}
-							class={imageClass}
-							data-carousel-item={isCarouselEnabled ? index : undefined}
-							style={blur > 0 ? `filter: blur(${blur}px);` : undefined}
-						/>
-					);
-				}
-			})}
+					</div>
+				);
+			}}
+			)}
 		</div>
 	)}
 </div>
@@ -209,4 +229,64 @@ const positionClass = getPositionClass(position);
 			initFullscreenWallpaperCarousel();
 		}
 	</script>
+	<!-- 客户端每日刷新壁纸 -->
+	<script>
+		(async function refreshWallpaperDaily() {
+			try {
+				const STORAGE_KEY = 'nuoyan_wallpaper_urls';
+				const now = Date.now();
+				const ONE_DAY = 24 * 60 * 60 * 1000;
+				const saved = localStorage.getItem(STORAGE_KEY);
+				let urls;
+				if (saved) {
+					try {
+						const data = JSON.parse(saved);
+						if (now - data.timestamp < ONE_DAY && data.urls?.length > 0) {
+							urls = data.urls;
+						}
+					} catch (e) {}
+				}
+				if (!urls) {
+					const fetched = [];
+					for (let i = 0; i < 8; i++) {
+						try {
+							if (i > 0) await new Promise((r) => setTimeout(r, 100));
+							const res = await fetch('https://api.waifu.im/images?IsNsfw=false&IncludedTags=waifu');
+							const ct = res.headers.get('content-type') || '';
+							if (ct.includes('json')) {
+								const json = await res.json();
+								let url = '';
+								if (json.items && json.items.length > 0) {
+								url = json.items[0].url || '';
+								}
+								if (!url) url = json.url || json.imgurl || '';
+								if (url && url.includes('image.baidu.com/search/down')) {
+									const m = url.match(/[?&]url=([^&]+)/);
+									if (m) url = decodeURIComponent(m[1]);
+								}
+								if (url) fetched.push(url);
+							}
+						} catch (e) {}
+					}
+					urls = [...new Set(fetched)].filter(Boolean);
+					if (urls.length > 0) {
+						localStorage.setItem(STORAGE_KEY, JSON.stringify({ timestamp: now, urls }));
+					}
+				}
+				if (urls && urls.length > 0) {
+					const container = document.querySelector('[data-fullscreen-wallpaper]');
+					if (container) {
+						const imgs = container.querySelectorAll('img');
+						imgs.forEach((img, idx) => {
+							const url = urls[idx % urls.length];
+							if (url) img.src = url;
+						});
+					}
+				}
+			} catch (e) {
+				console.warn('Wallpaper refresh failed:', e);
+			}
+		})();
+	</script>
+
 )}

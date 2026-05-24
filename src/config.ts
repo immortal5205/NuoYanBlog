@@ -76,14 +76,13 @@ export const siteConfig: SiteConfig = {
 			interval: 5, // 轮播间隔时间（秒）
 		},
 
-		// PicFlow API支持(智能图片API)
+		// 免费动漫图片API
 		imageApi: {
-			enable: false, // 启用图片API
-			url: "http://domain.com/api_v2.php?format=text&count=4", // API地址，返回每行一个图片链接的文本
+			enable: true, // 启用图片API
+			url: "https://api.waifu.im/images?IsNsfw=false&limit=1", // 随机二次元图片API
 		},
-		// 这里需要使用PicFlow API的Text返回类型,所以我们需要format=text参数
-		// 项目地址:https://github.com/matsuzaka-yuki/PicFlow-API
-		// 请自行搭建API
+		// waifu.im 免费API (https://docs.waifu.im)
+		// 仅返回 SFW 成年女性动漫角色图片，无幼女/萝莉内容
 
 		homeText: {
 			enable: true, // 在主页显示自定义文本
@@ -161,7 +160,7 @@ export const fullscreenWallpaperConfig: FullscreenWallpaperConfig = {
 			"/assets/mobile-banner/m8.webp",
 		], // 移动横幅图片
 	}, // 使用本地横幅图片
-	position: "center", // 壁纸位置，等同于 object-position
+	position: "center", // 壁纸位置
 	carousel: {
 		enable: true, // 启用轮播
 		interval: 5, // 轮播间隔时间（秒）

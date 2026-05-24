@@ -33,8 +33,10 @@
         }
     }
 
-    code {
-        @apply bg-[var(--inline-code-bg)] text-[var(--inline-code-color)] px-1 py-0.5 rounded-md overflow-hidden;
+    code:not(pre code) {
+        @apply bg-[var(--inline-code-bg)] text-[var(--inline-code-color)] px-1.5 py-0.5 rounded-md overflow-hidden;
+        font-size: 0.85em;
+        border: 1px solid var(--line-divider);
 
         font-family: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
         &:before {
@@ -43,7 +45,9 @@
         &:after {
             content:none;
         }
+    }
 
+    pre code {
         counter-reset: line;
         span.line {
             &:before {
@@ -99,9 +103,13 @@
     blockquote {
         @apply not-italic border-transparent relative;
         font-weight: inherit;
+        padding: 0.75rem 1.25rem;
+        margin: 1.25rem 0;
+        border-radius: 0 0.75rem 0.75rem 0;
+        background: var(--primary-subtle);
 
         &:before {
-            @apply content-[''] absolute -left-1 block transition bg-[var(--btn-regular-bg)] h-full w-1 rounded-full;
+            @apply content-[''] absolute left-0 top-0 block transition bg-[var(--primary)] h-full w-[3px] rounded-r-full;
         }
 
         /* Remove the double quotes from default styles */
@@ -109,6 +117,17 @@
             @apply content-none;
         }
 
+    }
+
+    /* Nested images in markdown */
+    img:not(.no-styling) {
+        @apply rounded-xl my-6 border border-black/5 dark:border-white/10;
+    }
+
+    /* Horizontal rule styling */
+    hr {
+        @apply my-8 border-0 h-px;
+        background: linear-gradient(to right, transparent, var(--line-divider), transparent);
     }
 
     .katex-display-container {
