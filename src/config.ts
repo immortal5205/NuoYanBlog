@@ -321,7 +321,7 @@ export const footerConfig: FooterConfig = {
 
 // 直接编辑 FooterConfig.html 文件来添加备案号等自定义内容
 
-/** 	
+/**
  * 侧边栏布局配置
  * 用于控制侧边栏组件的显示、排序、动画和响应式行为
  */
@@ -469,12 +469,7 @@ export const pioConfig: import("./types/config").PioConfig = {
 	hiddenOnMobile: true, // 默认在移动设备上隐藏
 	dialog: {
 		welcome: "欢迎来到诺言的博客!", // 欢迎词
-		touch: [
-			"你在干什么啊?",
-			"不要......",
-			"你这个变态!",
-			"ya!",
-		], // 触摸提示
+		touch: ["你在干什么啊?", "不要......", "你这个变态!", "ya!"], // 触摸提示
 		home: "点击这里返回首页", // 首页提示
 		skin: ["想要换新的衣服吗?", "新衣服真好看~"], // 换装提示
 		close: "QWQ 真的要关掉我吗？~", // 关闭提示

@@ -27,8 +27,7 @@ export const timelineData: TimelineItem[] = [
 	{
 		id: "work",
 		title: "武汉初心",
-		description:
-			"目前就职于武汉",
+		description: "目前就职于武汉",
 		type: "work",
 		startDate: "2024-07-01",
 		location: "WuHan",
@@ -46,15 +45,14 @@ export const timelineData: TimelineItem[] = [
 	{
 		id: "unity-excel",
 		title: "Unity Excel Importer",
-		description:
-			"一个用于Unity的表格资源读取工具",
+		description: "一个用于Unity的表格资源读取工具",
 		type: "project",
 		startDate: "2024-08-01",
 		skills: ["Assets", "C#", "Unity", "Git"],
 		achievements: [
 			"实现Unity表格数据的读取",
 			"实现了Unity资源数据的配置与读取",
-			"持续优化排除BUG中"
+			"持续优化排除BUG中",
 		],
 		links: [
 			{
@@ -75,8 +73,7 @@ export const timelineData: TimelineItem[] = [
 	{
 		id: "unity-ui",
 		title: "Unity UI Manager",
-		description:
-			"一个简单好用的UI管理框架",
+		description: "一个简单好用的UI管理框架",
 		type: "project",
 		startDate: "2025-05-01",
 		skills: ["Assets", "C#", "Unity", "Git"],
@@ -84,7 +81,7 @@ export const timelineData: TimelineItem[] = [
 			"实现UI的全局管理",
 			"实现性能的优化",
 			"实现各种动画效果",
-			"持续优化排除BUG中"
+			"持续优化排除BUG中",
 		],
 		links: [
 			{
@@ -105,15 +102,14 @@ export const timelineData: TimelineItem[] = [
 	{
 		id: "RecyclerView",
 		title: "Unity RecyclerView",
-		description:
-			"一个简单好用的Unity无限滚动列表",
+		description: "一个简单好用的Unity无限滚动列表",
 		type: "project",
 		startDate: "2025-05-01",
 		skills: ["Assets", "C#", "Unity", "Git"],
 		achievements: [
 			"替代Unity原生的列表组件",
 			"实现性能的优化",
-			"持续优化排除BUG中"
+			"持续优化排除BUG中",
 		],
 		icon: "material-symbols:code",
 		color: "#7C3AED",
@@ -130,25 +126,20 @@ export const timelineData: TimelineItem[] = [
 		achievements: [
 			"替代Unity原生的Layout组件",
 			"实现SpriteRenderer的布局。扇形布局等",
-			"持续优化排除BUG中"
+			"持续优化排除BUG中",
 		],
 		icon: "material-symbols:code",
 		color: "#f3dd13ff",
 		featured: true,
-	}
-	,
+	},
 	{
 		id: "easy-save",
 		title: "Unity EasySave",
-		description:
-			"一个简单好用的Unity存储系统",
+		description: "一个简单好用的Unity存储系统",
 		type: "project",
 		startDate: "2025-03-01",
 		skills: ["Assets", "C#", "Unity", "Git"],
-		achievements: [
-			"由于一些不可抗力暂不开源",
-			"持续优化排除BUG中"
-		],
+		achievements: ["由于一些不可抗力暂不开源", "持续优化排除BUG中"],
 		icon: "material-symbols:code",
 		color: "#f12308ff",
 		featured: true,
@@ -156,23 +147,19 @@ export const timelineData: TimelineItem[] = [
 	{
 		id: "gm",
 		title: "Game Jam",
-		description:
-			"一场持续半个月的游戏开发比赛",
+		description: "一场持续半个月的游戏开发比赛",
 		type: "project",
 		startDate: "2023-11-01",
 		endDate: "2023-12-15",
 		skills: ["C#", "Unity"],
-		achievements: [
-			"了解了多人开发流程",
-		],
+		achievements: ["了解了多人开发流程"],
 		icon: "material-symbols:database",
 		color: "#EA580C",
 	},
 	{
 		id: "high-school-graduation",
 		title: "高中",
-		description:
-			"以优异的成绩从高中毕业",
+		description: "以优异的成绩从高中毕业",
 		type: "education",
 		startDate: "2018-09-01",
 		endDate: "2021-06-30",
@@ -184,8 +171,7 @@ export const timelineData: TimelineItem[] = [
 	{
 		id: "english-certificate",
 		title: "英语 CET-4",
-		description:
-			"通过了大学英语四级考试，掌握了基本的英语阅读和写作技能。",
+		description: "通过了大学英语四级考试，掌握了基本的英语阅读和写作技能。",
 		type: "achievement",
 		startDate: "2023-06-15",
 		organization: "全国大学英语考试委员会",
@@ -207,8 +193,7 @@ export const timelineData: TimelineItem[] = [
 	{
 		id: "grid-bag",
 		title: "Unity Grid Bag",
-		description:
-			"防三角洲游戏的网格背包",
+		description: "防三角洲游戏的网格背包",
 		type: "project",
 		startDate: "2025-08-04",
 		icon: "material-symbols:database",

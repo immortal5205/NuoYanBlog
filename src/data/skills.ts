@@ -22,8 +22,7 @@ export const skillsData: Skill[] = [
 	{
 		id: "Unity",
 		name: "Unity",
-		description:
-			"开发游戏的平台",
+		description: "开发游戏的平台",
 		icon: "material-symbols:database",
 		category: "frontend",
 		level: "advanced",
@@ -36,8 +35,7 @@ export const skillsData: Skill[] = [
 	{
 		id: "mysql",
 		name: "MySQL",
-		description:
-			"流行且使用广泛的数据框架",
+		description: "流行且使用广泛的数据框架",
 		icon: "logos:mysql-icon",
 		category: "database",
 		level: "advanced",
@@ -50,8 +48,7 @@ export const skillsData: Skill[] = [
 	{
 		id: "git",
 		name: "Git",
-		description:
-			"分布式版本控制系统，是代码管理和团队协作的重要工具。",
+		description: "分布式版本控制系统，是代码管理和团队协作的重要工具。",
 		icon: "logos:git-icon",
 		category: "tools",
 		level: "advanced",
@@ -61,8 +58,7 @@ export const skillsData: Skill[] = [
 	{
 		id: "vscode",
 		name: "VS Code",
-		description:
-			"一个轻量级但强大的代码编辑器，拥有丰富的插件生态系统。",
+		description: "一个轻量级但强大的代码编辑器，拥有丰富的插件生态系统。",
 		icon: "logos:visual-studio-code",
 		category: "tools",
 		level: "expert",
@@ -72,8 +68,7 @@ export const skillsData: Skill[] = [
 	{
 		id: "vs",
 		name: "VS",
-		description:
-			"强大的代码编辑器",
+		description: "强大的代码编辑器",
 		icon: "logos:visual-studio",
 		category: "tools",
 		level: "expert",
@@ -108,8 +103,7 @@ export const skillsData: Skill[] = [
 	{
 		id: "gf",
 		name: "GF",
-		description:
-			"一个第三方开发游戏框架",
+		description: "一个第三方开发游戏框架",
 		icon: "material-symbols:database",
 		category: "other",
 		level: "advanced",
@@ -120,8 +114,7 @@ export const skillsData: Skill[] = [
 	{
 		id: "gfx",
 		name: "GFX",
-		description:
-			"最新的GF框架，适配了华佗、代码混淆、小程序等功能",
+		description: "最新的GF框架，适配了华佗、代码混淆、小程序等功能",
 		icon: "material-symbols:database",
 		category: "other",
 		level: "advanced",

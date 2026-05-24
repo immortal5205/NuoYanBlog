@@ -54,8 +54,13 @@ const getBannerImages = async () => {
 };
 
 const bannerImages = await getBannerImages();
-const hasBannerImages = (bannerImages.desktop && Array.isArray(bannerImages.desktop) && bannerImages.desktop.length > 0) ||
-	(bannerImages.mobile && Array.isArray(bannerImages.mobile) && bannerImages.mobile.length > 0);
+const hasBannerImages =
+	(bannerImages.desktop &&
+		Array.isArray(bannerImages.desktop) &&
+		bannerImages.desktop.length > 0) ||
+	(bannerImages.mobile &&
+		Array.isArray(bannerImages.mobile) &&
+		bannerImages.mobile.length > 0);
 
 const {
 	title,

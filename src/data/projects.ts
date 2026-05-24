@@ -21,8 +21,7 @@ export const projectsData: Project[] = [
 	{
 		id: "Unity Excel Importer",
 		title: "Unity Excel Importer",
-		description:
-			"一个用于Unity的表格资源读取工具",
+		description: "一个用于Unity的表格资源读取工具",
 		image: "",
 		category: "Unity",
 		techStack: ["Unity", "Excel"],
@@ -37,8 +36,7 @@ export const projectsData: Project[] = [
 	{
 		id: "GF Unity Excel Importer",
 		title: "GF Unity Excel Importer",
-		description:
-			"将读取表格的工具适配GF框架",
+		description: "将读取表格的工具适配GF框架",
 		image: "",
 		category: "Unity",
 		techStack: ["Unity", "Excel"],
@@ -53,13 +51,13 @@ export const projectsData: Project[] = [
 	{
 		id: "Unity UI Manager",
 		title: "Unity UI Manager",
-		description:
-			"一个简单好用的UI管理框架",
+		description: "一个简单好用的UI管理框架",
 		image: "",
 		category: "Unity",
 		techStack: ["Unity", "UI"],
 		status: "completed",
-		liveDemo: "https://www.bilibili.com/video/BV11bRrYiE3V?vd_source=cbcb01112bcf2b5e16c5a97933138e45&spm_id_from=333.788.videopod.sections",
+		liveDemo:
+			"https://www.bilibili.com/video/BV11bRrYiE3V?vd_source=cbcb01112bcf2b5e16c5a97933138e45&spm_id_from=333.788.videopod.sections",
 		sourceCode: "https://gitee.com/NuoYanRuoShui/simple-uimanager.git",
 		startDate: "2025-05-01",
 		endDate: "2025-09-01",
@@ -75,7 +73,8 @@ export const projectsData: Project[] = [
 		category: "Unity",
 		techStack: ["Unity", "Layout"],
 		status: "completed",
-		liveDemo: "https://www.bilibili.com/video/BV11bRrYiE3V?vd_source=cbcb01112bcf2b5e16c5a97933138e45&spm_id_from=333.788.videopod.sections",
+		liveDemo:
+			"https://www.bilibili.com/video/BV11bRrYiE3V?vd_source=cbcb01112bcf2b5e16c5a97933138e45&spm_id_from=333.788.videopod.sections",
 		sourceCode: "https://gitee.com/NuoYanRuoShui/simple-uimanager.git",
 		startDate: "2025-05-01",
 		endDate: "2025-09-01",
@@ -85,13 +84,13 @@ export const projectsData: Project[] = [
 	{
 		id: "RecyclerView",
 		title: "Unity RecyclerView",
-		description:
-			"一个简单好用的Unity无限滚动列表",
+		description: "一个简单好用的Unity无限滚动列表",
 		image: "",
 		category: "Unity",
 		techStack: ["Unity", "RecyclerView"],
 		status: "completed",
-		liveDemo: "https://www.bilibili.com/video/BV11bRrYiE3V?vd_source=cbcb01112bcf2b5e16c5a97933138e45&spm_id_from=333.788.videopod.sections",
+		liveDemo:
+			"https://www.bilibili.com/video/BV11bRrYiE3V?vd_source=cbcb01112bcf2b5e16c5a97933138e45&spm_id_from=333.788.videopod.sections",
 		sourceCode: "https://gitee.com/NuoYanRuoShui/simple-uimanager.git",
 		startDate: "2025-05-01",
 		endDate: "2025-07-01",
@@ -101,8 +100,7 @@ export const projectsData: Project[] = [
 	{
 		id: "easy-save",
 		title: "Unity EasySave",
-		description:
-			"一个简单好用的Unity存储系统",
+		description: "一个简单好用的Unity存储系统",
 		image: "",
 		category: "Unity",
 		techStack: ["Unity", "RecyclerView"],
@@ -114,8 +112,7 @@ export const projectsData: Project[] = [
 	{
 		id: "grid-bag",
 		title: "Unity Grid Bag",
-		description:
-			"Unity网格背包",
+		description: "Unity网格背包",
 		image: "",
 		category: "Unity",
 		techStack: ["Unity", "Bag"],

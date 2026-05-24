@@ -17,54 +17,53 @@ if (!config.enable) {
 
 // 获取当前设备类型的图片源
 const getImageSources = async () => {
-		let srcConfig = config.src;
+	let srcConfig = config.src;
 
-		// 如果启用了图片API，始终使用API图片作为壁纸背景
-		if (
-			siteConfig.banner.imageApi?.enable &&
-			siteConfig.banner.imageApi?.url
-		) {
-			try {
-				const urls = [];
-				for (let i = 0; i < 8; i++) {
-					try {
-						if (i > 0) await new Promise((r) => setTimeout(r, 100));
-						const response = await fetch(siteConfig.banner.imageApi.url);
-						if (response.headers.get("content-type")?.includes("json")) {
-							const json = await response.json();
-							let rawUrl = "";
-							if (json.imgurl) rawUrl = json.imgurl;
-							else if (json.url) rawUrl = json.url;
-							else if (json.img_url) rawUrl = json.img_url;
-							else if (json.data?.url) rawUrl = json.data.url;
-							else if (json.items && json.items.length > 0) {
-								json.items.forEach((item) => { if (item.url) urls.push(item.url); });
-							}
-							if (rawUrl) {
-								if (rawUrl.includes("image.baidu.com/search/down")) {
-									const m = rawUrl.match(/[?&]url=([^&]+)/);
-									if (m) rawUrl = decodeURIComponent(m[1]);
-								}
-								urls.push(rawUrl);
-							}
+	// 如果启用了图片API，始终使用API图片作为壁纸背景
+	if (siteConfig.banner.imageApi?.enable && siteConfig.banner.imageApi?.url) {
+		try {
+			const urls = [];
+			for (let i = 0; i < 8; i++) {
+				try {
+					if (i > 0) await new Promise((r) => setTimeout(r, 100));
+					const response = await fetch(siteConfig.banner.imageApi.url);
+					if (response.headers.get("content-type")?.includes("json")) {
+						const json = await response.json();
+						let rawUrl = "";
+						if (json.imgurl) rawUrl = json.imgurl;
+						else if (json.url) rawUrl = json.url;
+						else if (json.img_url) rawUrl = json.img_url;
+						else if (json.data?.url) rawUrl = json.data.url;
+						else if (json.items && json.items.length > 0) {
+							json.items.forEach((item) => {
+								if (item.url) urls.push(item.url);
+							});
 						}
-					} catch (e) {}
-				}
-				if (urls.length > 0) {
-					const unique = [...new Set(urls)].filter(Boolean);
-					return { desktop: unique, mobile: unique };
-				}
-			} catch (error) {
-				console.warn("Failed to fetch API images for wallpaper:", error);
+						if (rawUrl) {
+							if (rawUrl.includes("image.baidu.com/search/down")) {
+								const m = rawUrl.match(/[?&]url=([^&]+)/);
+								if (m) rawUrl = decodeURIComponent(m[1]);
+							}
+							urls.push(rawUrl);
+						}
+					}
+				} catch (e) {}
 			}
+			if (urls.length > 0) {
+				const unique = [...new Set(urls)].filter(Boolean);
+				return { desktop: unique, mobile: unique };
+			}
+		} catch (error) {
+			console.warn("Failed to fetch API images for wallpaper:", error);
 		}
+	}
 
-		const { desktop, mobile } = srcConfig;
-		return {
-			desktop: Array.isArray(desktop) ? desktop : desktop ? [desktop] : [],
-			mobile: Array.isArray(mobile) ? mobile : mobile ? [mobile] : [],
-		};
+	const { desktop, mobile } = srcConfig;
+	return {
+		desktop: Array.isArray(desktop) ? desktop : desktop ? [desktop] : [],
+		mobile: Array.isArray(mobile) ? mobile : mobile ? [mobile] : [],
 	};
+};
 const imageSources = await getImageSources();
 const hasDesktopImages = imageSources.desktop.length > 0;
 const hasMobileImages = imageSources.mobile.length > 0;
