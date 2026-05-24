@@ -15,30 +15,10 @@ declare global {
 				}>;
 			}>;
 		};
-		translate?: {
-			service: {
-				use: (service: string) => void;
-			};
-			language: {
-				setLocal: (language: string) => void;
-			};
-			setAutoDiscriminateLocalLanguage: () => void;
-			ignore: {
-				class: string[];
-				tag: string[];
-			};
-			selectLanguageTag: {
-				show: boolean;
-			};
-			storage: {
-				set: () => void;
-			};
-			listener: {
-				start: () => void;
-			};
-			execute: () => void;
-		};
 		mobileTOCInit?: () => void;
+		initSemifullScrollDetection?: () => void;
+		semifullScrollHandler?: (() => void) | null;
+		closeAnnouncement?: () => void;
 	}
 }
 
@@ -67,3 +47,5 @@ interface SearchResult {
 	raw_url?: string;
 	sub_results?: SearchResult[];
 }
+
+export {};

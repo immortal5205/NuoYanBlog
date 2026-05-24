@@ -22,7 +22,7 @@ const getImageSources = async () => {
 	// 如果启用了图片API，始终使用API图片作为壁纸背景
 	if (siteConfig.banner.imageApi?.enable && siteConfig.banner.imageApi?.url) {
 		try {
-			const urls = [];
+			const urls: string[] = [];
 			for (let i = 0; i < 8; i++) {
 				try {
 					if (i > 0) await new Promise((r) => setTimeout(r, 100));
@@ -160,18 +160,13 @@ const positionClass = getPositionClass(position);
 				);
 			} else {
 				return (
-					<div
-						class="absolute inset-0 w-full h-full transition-opacity duration-1000 overflow-hidden"
-						style={`background-image: url('${src}'); background-size: cover; background-position: center; filter: blur(25px); transform: scale(1.1);`}
-						data-carousel-item={isCarouselEnabled ? index : undefined}
-					>
-						<img
+					<img
 							src={src}
 							alt={`Mobile wallpaper ${index + 1}`}
-							class={`absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 ${positionClass}`}
+							class={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${positionClass}`}
+							data-carousel-item={isCarouselEnabled ? index : undefined}
 							style={blur > 0 ? `filter: blur(${blur}px);` : undefined}
 						/>
-					</div>
 				);
 			}}
 			)}
@@ -246,7 +241,7 @@ const positionClass = getPositionClass(position);
 					} catch (e) {}
 				}
 				if (!urls) {
-					const fetched = [];
+					const fetched: string[] = [];
 					for (let i = 0; i < 8; i++) {
 						try {
 							if (i > 0) await new Promise((r) => setTimeout(r, 100));
